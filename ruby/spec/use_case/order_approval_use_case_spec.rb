@@ -24,8 +24,7 @@ RSpec.describe OrderApprovalUseCase do
 
   it 'rejects a newly unapproved order' do
     initial_order.status = OrderStatus::CREATED
-    request = OrderApprovalRequest.new(order_id: initial_order.id)
-    request.approved = false
+    request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
 
     use_case.run(request)
 

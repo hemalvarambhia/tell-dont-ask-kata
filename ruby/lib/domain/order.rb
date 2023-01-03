@@ -6,4 +6,8 @@ class Order
   def initialize(id: nil)
     @id = id
   end
+
+  def shipped?
+    status == OrderStatus::SHIPPED
+  end
 end
