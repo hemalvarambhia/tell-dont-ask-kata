@@ -34,24 +34,21 @@ RSpec.describe OrderApprovalUseCase do
 
   it 'cannot approve a rejected order' do
     initial_order.status = OrderStatus::REJECTED
-    request = OrderApprovalRequest.new(order_id: initial_order.id)
-    request.approved = true
+    request = OrderApprovalRequest.new(order_id: initial_order.id, approved: true)
 
     expect { use_case.run(request) }.to raise_error(described_class::RejectedOrderCannotBeApprovedError)
   end
 
   it 'cannot reject an approved order' do
     initial_order.status = OrderStatus::APPROVED
-    request = OrderApprovalRequest.new(order_id: initial_order.id)
-    request.approved = false
+    request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
 
     expect { use_case.run(request) }.to raise_error(described_class::ApprovedOrderCannotBeRejectedError)
   end
 
   it 'cannot approve shipped orders' do
     initial_order.status = OrderStatus::SHIPPED
-    request = OrderApprovalRequest.new(order_id: initial_order.id)
-    request.approved = true
+    request = OrderApprovalRequest.new(order_id: initial_order.id, approved: true)
 
     expect { use_case.run(request) }.to raise_error(described_class::ShippedOrdersCannotBeChangedError)
   end
