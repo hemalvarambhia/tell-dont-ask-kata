@@ -20,7 +20,7 @@ RSpec.describe OrderApprovalUseCase do
     request.order_id = initial_order.id
   end
 
-  it 'approved existing order' do
+  it 'approves an existing order' do
     request.approved = true
 
     use_case.run(request)
@@ -29,7 +29,7 @@ RSpec.describe OrderApprovalUseCase do
     expect(saved_order.status).to eq(OrderStatus::APPROVED)
   end
 
-  it 'rejected existing order' do
+  it 'rejects a newly unapproved order' do
     initial_order.status = OrderStatus::CREATED
     request.approved = false
 
@@ -39,21 +39,21 @@ RSpec.describe OrderApprovalUseCase do
     expect(saved_order.status).to eq(OrderStatus::REJECTED)
   end
 
-  it 'cannot approve rejected order' do
+  it 'cannot approve a rejected order' do
     initial_order.status = OrderStatus::REJECTED
     request.approved = true
 
     expect { use_case.run(request) }.to raise_error(described_class::RejectedOrderCannotBeApprovedError)
   end
 
-  it 'cannot reject approved order' do
+  it 'cannot reject an approved order' do
     initial_order.status = OrderStatus::APPROVED
     request.approved = false
 
     expect { use_case.run(request) }.to raise_error(described_class::ApprovedOrderCannotBeRejectedError)
   end
 
-  it 'cannot approve shipepd orders' do
+  it 'cannot approve shipped orders' do
     initial_order.status = OrderStatus::SHIPPED
     request.approved = true
 
