@@ -16,6 +16,7 @@ RSpec.describe OrderApprovalUseCase do
   before { order_repository.add_order(initial_order) }
 
   it 'approves an existing order' do
+    request = OrderApprovalRequest.new(order_id: initial_order.id)
     request.approved = true
 
     use_case.run(request)
@@ -26,6 +27,7 @@ RSpec.describe OrderApprovalUseCase do
 
   it 'rejects a newly unapproved order' do
     initial_order.status = OrderStatus::CREATED
+    request = OrderApprovalRequest.new(order_id: initial_order.id)
     request.approved = false
 
     use_case.run(request)
@@ -36,6 +38,7 @@ RSpec.describe OrderApprovalUseCase do
 
   it 'cannot approve a rejected order' do
     initial_order.status = OrderStatus::REJECTED
+    request = OrderApprovalRequest.new(order_id: initial_order.id)
     request.approved = true
 
     expect { use_case.run(request) }.to raise_error(described_class::RejectedOrderCannotBeApprovedError)
@@ -43,6 +46,7 @@ RSpec.describe OrderApprovalUseCase do
 
   it 'cannot reject an approved order' do
     initial_order.status = OrderStatus::APPROVED
+    request = OrderApprovalRequest.new(order_id: initial_order.id)
     request.approved = false
 
     expect { use_case.run(request) }.to raise_error(described_class::ApprovedOrderCannotBeRejectedError)
@@ -50,6 +54,7 @@ RSpec.describe OrderApprovalUseCase do
 
   it 'cannot approve shipped orders' do
     initial_order.status = OrderStatus::SHIPPED
+    request = OrderApprovalRequest.new(order_id: initial_order.id)
     request.approved = true
 
     expect { use_case.run(request) }.to raise_error(described_class::ShippedOrdersCannotBeChangedError)
