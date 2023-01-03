@@ -10,7 +10,7 @@ RSpec.describe OrderApprovalUseCase do
   let(:use_case) { described_class.new(order_repository) }
 
   let(:initial_order) do
-    Order.new.tap { |order| order.id = rand(1..1000) }
+    Order.new(id: rand(1..1000))
   end
 
   let(:request) { OrderApprovalRequest.new }
