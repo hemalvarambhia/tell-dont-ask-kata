@@ -10,9 +10,7 @@ RSpec.describe OrderApprovalUseCase do
   let(:use_case) { described_class.new(order_repository) }
 
   let(:initial_order) do
-    Order.new.tap do |order|
-      order.id = 1
-    end
+    Order.new.tap { |order| order.id = 1 }
   end
 
   let(:request) { OrderApprovalRequest.new }
