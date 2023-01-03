@@ -59,11 +59,4 @@ RSpec.describe OrderApprovalUseCase do
 
     expect { use_case.run(request) }.to raise_error(described_class::ShippedOrdersCannotBeChangedError)
   end
-
-  it 'cannot reject shipped orders' do
-    initial_order.status = OrderStatus::SHIPPED
-    request.approved = true
-
-    expect { use_case.run(request) }.to raise_error(described_class::ShippedOrdersCannotBeChangedError)
-  end
 end
