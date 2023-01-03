@@ -9,15 +9,11 @@ RSpec.describe OrderApprovalUseCase do
   let(:order_repository) { TestOrderRepository.new }
   let(:use_case) { described_class.new(order_repository) }
 
-  let(:initial_order) do
-    Order.new(id: rand(1..1000))
-  end
+  let(:initial_order) { Order.new(id: rand(1..1000)) }
 
   let(:request) { OrderApprovalRequest.new(order_id: initial_order.id) }
 
-  before do
-    order_repository.add_order(initial_order)
-  end
+  before { order_repository.add_order(initial_order) }
 
   it 'approves an existing order' do
     request.approved = true
