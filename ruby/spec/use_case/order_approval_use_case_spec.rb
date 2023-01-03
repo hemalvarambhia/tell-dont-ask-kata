@@ -13,7 +13,7 @@ RSpec.describe OrderApprovalUseCase do
     Order.new(id: rand(1..1000))
   end
 
-  let(:request) { OrderApprovalRequest.new }
+  let(:request) { OrderApprovalRequest.new(order_id: initial_order.id) }
 
   before do
     order_repository.add_order(initial_order)
