@@ -15,7 +15,7 @@ class TestOrderRepository
   end
 
   def get_by_id(order_id)
-    @orders.first { |o| o.id == order_id }
+    @orders.find { |o| o.id == order_id }
   end
 
   def add_order(order)
