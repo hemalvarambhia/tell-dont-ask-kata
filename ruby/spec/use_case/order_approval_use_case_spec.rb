@@ -17,7 +17,6 @@ RSpec.describe OrderApprovalUseCase do
 
   before do
     order_repository.add_order(initial_order)
-    request.order_id = initial_order.id
   end
 
   it 'approves an existing order' do
