@@ -7,6 +7,10 @@ class Order
     @id = id
   end
 
+  def approved?
+    status == OrderStatus::APPROVED
+  end
+
   def shipped?
     status == OrderStatus::SHIPPED
   end

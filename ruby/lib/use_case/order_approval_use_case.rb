@@ -19,7 +19,7 @@ class OrderApprovalUseCase
 
     raise RejectedOrderCannotBeApprovedError if request.approved && order.rejected?
 
-    raise ApprovedOrderCannotBeRejectedError if !request.approved && order.status == OrderStatus::APPROVED
+    raise ApprovedOrderCannotBeRejectedError if !request.approved && order.approved?
 
     order.status = request.approved ? OrderStatus::APPROVED : OrderStatus::REJECTED
 
