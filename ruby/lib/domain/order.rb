@@ -7,6 +7,14 @@ class Order
     @id = id
   end
 
+  def approve!
+    self.status = OrderStatus::APPROVED
+  end
+
+  def reject!
+    self.status = OrderStatus::REJECTED
+  end
+
   def approved?
     status == OrderStatus::APPROVED
   end
