@@ -23,7 +23,7 @@ RSpec.describe OrderApprovalUseCase do
   end
 
   it 'cannot approve a rejected order' do
-    initial_order.status = OrderStatus::REJECTED
+    initial_order.reject!
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: true)
 
     expect { use_case.run(request) }.to raise_error(described_class::RejectedOrderCannotBeApprovedError)
