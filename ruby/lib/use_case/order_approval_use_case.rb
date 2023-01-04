@@ -21,8 +21,11 @@ class OrderApprovalUseCase
 
     raise ApprovedOrderCannotBeRejectedError if !request.approved && order.approved?
 
-    order.status = request.approved ? OrderStatus::APPROVED : OrderStatus::REJECTED
-
+    if request.approved
+      order.status = OrderStatus::APPROVED
+    else
+      order.status = OrderStatus::REJECTED
+    end
     @order_repository.save(order)
   end
 end
