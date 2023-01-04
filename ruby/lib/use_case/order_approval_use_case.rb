@@ -17,7 +17,7 @@ class OrderApprovalUseCase
 
     raise ShippedOrdersCannotBeChangedError if order.shipped?
 
-    raise RejectedOrderCannotBeApprovedError if request.approved && order.status == OrderStatus::REJECTED
+    raise RejectedOrderCannotBeApprovedError if request.approved && order.rejected?
 
     raise ApprovedOrderCannotBeRejectedError if !request.approved && order.status == OrderStatus::APPROVED
 

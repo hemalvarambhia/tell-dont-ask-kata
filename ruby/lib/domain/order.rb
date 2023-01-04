@@ -10,4 +10,8 @@ class Order
   def shipped?
     status == OrderStatus::SHIPPED
   end
+
+  def rejected?
+    status == OrderStatus::REJECTED
+  end
 end
