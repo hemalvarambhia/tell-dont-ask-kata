@@ -19,7 +19,7 @@ RSpec.describe OrderApprovalUseCase do
     use_case.run(request)
 
     saved_order = order_repository.saved_order
-    expect(saved_order.status).to eq(OrderStatus::APPROVED)
+    expect(saved_order).to be_approved
   end
 
   it 'cannot approve a rejected order' do
