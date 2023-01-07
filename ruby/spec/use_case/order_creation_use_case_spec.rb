@@ -17,7 +17,7 @@ RSpec.describe OrderCreationUseCase do
   let(:product_catalog) do
     InMemoryProductCatalog.new(
       [
-        Product.new.tap do |product|
+        Product.new(name: 'salad', price: 3.56, category: food).tap do |product|
           product.name = 'salad'
           product.price = 3.56
           product.category = food
