@@ -30,7 +30,7 @@ RSpec.describe OrderApprovalUseCase do
   end
 
   it 'cannot approve shipped orders' do
-    initial_order.status = OrderStatus::SHIPPED
+    initial_order.shipped!
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: true)
 
     expect { use_case.run(request) }.to raise_error(described_class::ShippedOrdersCannotBeChangedError)

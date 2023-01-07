@@ -15,6 +15,10 @@ class Order
     self.status = OrderStatus::REJECTED
   end
 
+  def shipped!
+    self.status = OrderStatus::SHIPPED
+  end
+
   def approved?
     status == OrderStatus::APPROVED
   end
