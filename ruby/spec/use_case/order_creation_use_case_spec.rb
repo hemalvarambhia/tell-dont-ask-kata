@@ -13,10 +13,7 @@ require 'domain/category'
 RSpec.describe OrderCreationUseCase do
   let(:order_repository) { TestOrderRepository.new }
   let(:food) do
-    Category.new.tap do |c|
-      c.name = 'food'
-      c.tax_percentage = 10.0
-    end
+    Category.new(name: 'food', tax_percentage: 10.0)
   end
 
   let(:product_catalog) do
