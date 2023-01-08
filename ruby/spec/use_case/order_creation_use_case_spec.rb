@@ -58,7 +58,7 @@ RSpec.describe OrderCreationUseCase do
     request = SellItemsRequest.new
     request.requests = []
 
-    unknown_product_request = SellItemRequest.new
+    unknown_product_request = SellItemRequest.new(product_name: 'unknown product', quantity: rand(1..5))
     unknown_product_request.product_name = 'unknown product'
     request.requests << unknown_product_request
 
