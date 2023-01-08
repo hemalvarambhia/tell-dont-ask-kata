@@ -59,7 +59,6 @@ RSpec.describe OrderCreationUseCase do
     request.requests = []
 
     unknown_product_request = SellItemRequest.new(product_name: 'unknown product', quantity: rand(1..5))
-    unknown_product_request.product_name = 'unknown product'
     request.requests << unknown_product_request
 
     expect { use_case.run(request) }.to raise_error(described_class::UnknownProductError)
