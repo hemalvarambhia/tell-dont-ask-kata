@@ -26,11 +26,11 @@ RSpec.describe OrderCreationUseCase do
   let(:use_case) { OrderCreationUseCase.new(order_repository, product_catalog) }
 
   it 'sells multiple items' do
-    salad_request = SellItemRequest.new
+    salad_request = SellItemRequest.new(product_name: 'salad', quantity: 2)
     salad_request.product_name = 'salad'
     salad_request.quantity = 2
 
-    tomato_request = SellItemRequest.new
+    tomato_request = SellItemRequest.new(product_name: 'tomato', quantity: 3)
     tomato_request.product_name = 'tomato'
     tomato_request.quantity = 3
 
