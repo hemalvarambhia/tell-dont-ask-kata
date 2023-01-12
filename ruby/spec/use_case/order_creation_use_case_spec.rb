@@ -41,8 +41,11 @@ RSpec.describe OrderCreationUseCase do
     expect(inserted_order.currency).to eq('EUR')
     expect(inserted_order.items.count).to eq(2)
 
-    expect(inserted_order.items[0].product.name).to eq('salad')
-    expect(inserted_order.items[0].product.price).to eq(3.56)
+    salad = OrderItem.new(
+      product: Product.new(name: 'salad', price: 3.56)
+    )
+    expect(inserted_order.items[0].product.name).to eq(salad.product.name)
+    expect(inserted_order.items[0].product.price).to eq(salad.product.price)
     expect(inserted_order.items[0].quantity).to eq(2)
     expect(inserted_order.items[0].taxed_amount).to eq(7.84)
     expect(inserted_order.items[0].tax).to eq(0.72)
