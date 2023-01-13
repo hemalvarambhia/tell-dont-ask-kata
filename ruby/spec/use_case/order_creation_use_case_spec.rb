@@ -54,6 +54,13 @@ RSpec.describe OrderCreationUseCase do
     expect(inserted_order.items[1].quantity).to eq(3)
     expect(inserted_order.items[1].taxed_amount).to eq(15.36)
     expect(inserted_order.items[1].tax).to eq(1.41)
+    tomato = OrderItem.new(
+      product: Product.new(name: 'tomato', price: 4.65),
+      quantity: 3,
+      taxed_amount: 15.36,
+      tax: 1.41
+    )
+    assert_equal(inserted_order.items[1], tomato)
   end
 
   it 'cannot sell an unknown product' do
