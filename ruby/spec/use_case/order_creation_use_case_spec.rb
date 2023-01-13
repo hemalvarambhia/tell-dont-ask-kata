@@ -47,7 +47,7 @@ RSpec.describe OrderCreationUseCase do
       taxed_amount: 7.84,
       tax: 0.72
     )
-    assert_equal(inserted_order, salad)
+    assert_equal(inserted_order.items[0], salad)
 
     expect(inserted_order.items[1].product.name).to eq('tomato')
     expect(inserted_order.items[1].product.price).to eq(4.65)
@@ -66,10 +66,10 @@ RSpec.describe OrderCreationUseCase do
   private
 
   def assert_equal(inserted_order, expected_item)
-    expect(inserted_order.items[0].product.name).to eq(expected_item.product.name)
-    expect(inserted_order.items[0].product.price).to eq(expected_item.product.price)
-    expect(inserted_order.items[0].quantity).to eq(expected_item.quantity)
-    expect(inserted_order.items[0].taxed_amount).to eq(expected_item.taxed_amount)
-    expect(inserted_order.items[0].tax).to eq(expected_item.tax)
+    expect(inserted_order.product.name).to eq(expected_item.product.name)
+    expect(inserted_order.product.price).to eq(expected_item.product.price)
+    expect(inserted_order.quantity).to eq(expected_item.quantity)
+    expect(inserted_order.taxed_amount).to eq(expected_item.taxed_amount)
+    expect(inserted_order.tax).to eq(expected_item.tax)
   end
 end
