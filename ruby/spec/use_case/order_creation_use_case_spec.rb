@@ -47,11 +47,7 @@ RSpec.describe OrderCreationUseCase do
       taxed_amount: 7.84,
       tax: 0.72
     )
-    expect(inserted_order.items[0].product.name).to eq(salad.product.name)
-    expect(inserted_order.items[0].product.price).to eq(salad.product.price)
-    expect(inserted_order.items[0].quantity).to eq(salad.quantity)
-    expect(inserted_order.items[0].taxed_amount).to eq(salad.taxed_amount)
-    expect(inserted_order.items[0].tax).to eq(salad.tax)
+    assert_equal(inserted_order, salad)
 
     expect(inserted_order.items[1].product.name).to eq('tomato')
     expect(inserted_order.items[1].product.price).to eq(4.65)
@@ -65,5 +61,15 @@ RSpec.describe OrderCreationUseCase do
     request = SellItemsRequest.new(requests: [unknown_product_request])
 
     expect { use_case.run(request) }.to raise_error(described_class::UnknownProductError)
+  end
+
+  private
+
+  def assert_equal(inserted_order, expected_item)
+    expect(inserted_order.items[0].product.name).to eq(expected_item.product.name)
+    expect(inserted_order.items[0].product.price).to eq(expected_item.product.price)
+    expect(inserted_order.items[0].quantity).to eq(expected_item.quantity)
+    expect(inserted_order.items[0].taxed_amount).to eq(expected_item.taxed_amount)
+    expect(inserted_order.items[0].tax).to eq(expected_item.tax)
   end
 end
