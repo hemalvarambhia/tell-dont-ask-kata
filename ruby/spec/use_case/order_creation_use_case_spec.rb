@@ -49,11 +49,6 @@ RSpec.describe OrderCreationUseCase do
     )
     assert_equal(inserted_order.items[0], salad)
 
-    expect(inserted_order.items[1].product.name).to eq('tomato')
-    expect(inserted_order.items[1].product.price).to eq(4.65)
-    expect(inserted_order.items[1].quantity).to eq(3)
-    expect(inserted_order.items[1].taxed_amount).to eq(15.36)
-    expect(inserted_order.items[1].tax).to eq(1.41)
     tomato = OrderItem.new(
       product: Product.new(name: 'tomato', price: 4.65),
       quantity: 3,
