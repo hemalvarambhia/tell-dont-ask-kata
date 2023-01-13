@@ -44,13 +44,14 @@ RSpec.describe OrderCreationUseCase do
     salad = OrderItem.new(
       product: Product.new(name: 'salad', price: 3.56),
       quantity: 2,
-      taxed_amount: 7.84
+      taxed_amount: 7.84,
+      tax: 0.72
     )
     expect(inserted_order.items[0].product.name).to eq(salad.product.name)
     expect(inserted_order.items[0].product.price).to eq(salad.product.price)
     expect(inserted_order.items[0].quantity).to eq(salad.quantity)
     expect(inserted_order.items[0].taxed_amount).to eq(salad.taxed_amount)
-    expect(inserted_order.items[0].tax).to eq(0.72)
+    expect(inserted_order.items[0].tax).to eq(salad.tax)
 
     expect(inserted_order.items[1].product.name).to eq('tomato')
     expect(inserted_order.items[1].product.price).to eq(4.65)
