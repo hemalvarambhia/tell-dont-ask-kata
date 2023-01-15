@@ -3,8 +3,12 @@
 class Order
   attr_accessor :total, :currency, :items, :tax, :status, :id
 
-  def initialize(id: nil)
+  def initialize(id: nil, status: '', total: 0.0, tax: 0.0, currency: 'EUR', items: [])
     @id = id
+    @status = status
+    @total = total
+    @tax = tax
+    @currency = currency
   end
 
   def approve!

@@ -35,10 +35,17 @@ RSpec.describe OrderCreationUseCase do
 
     inserted_order = order_repository.saved_order
 
-    expect(inserted_order.status).to eq(OrderStatus::CREATED)
-    expect(inserted_order.total).to eq(23.20)
-    expect(inserted_order.tax).to eq(2.13)
-    expect(inserted_order.currency).to eq('EUR')
+    expected_order =
+      Order.new(
+        status: OrderStatus::CREATED,
+        total: 23.20,
+        tax: 2.13,
+        currency: 'EUR'
+      )
+    expect(inserted_order.status).to eq(expected_order.status)
+    expect(inserted_order.total).to eq(expected_order.total)
+    expect(inserted_order.tax).to eq(expected_order.tax)
+    expect(inserted_order.currency).to eq(expected_order.currency)
     expect(inserted_order.items.count).to eq(2)
 
     salad =
