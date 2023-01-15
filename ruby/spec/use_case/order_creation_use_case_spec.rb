@@ -42,11 +42,7 @@ RSpec.describe OrderCreationUseCase do
         tax: 2.13,
         currency: 'EUR'
       )
-    expect(inserted_order.status).to eq(expected_order.status)
-    expect(inserted_order.total).to eq(expected_order.total)
-    expect(inserted_order.tax).to eq(expected_order.tax)
-    expect(inserted_order.currency).to eq(expected_order.currency)
-    expect(inserted_order.items.count).to eq(2)
+    assert_orders_equal(inserted_order, expected_order)
 
     salad =
       OrderItem.new(
@@ -83,4 +79,13 @@ RSpec.describe OrderCreationUseCase do
     expect(inserted_order.taxed_amount).to eq(expected_item.taxed_amount)
     expect(inserted_order.tax).to eq(expected_item.tax)
   end
+
+  def assert_orders_equal(inserted_order, expected_order)
+    expect(inserted_order.status).to eq(expected_order.status)
+    expect(inserted_order.total).to eq(expected_order.total)
+    expect(inserted_order.tax).to eq(expected_order.tax)
+    expect(inserted_order.currency).to eq(expected_order.currency)
+    expect(inserted_order.items.count).to eq(2)
+  end
+
 end
