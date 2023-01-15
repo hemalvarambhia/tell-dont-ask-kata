@@ -41,20 +41,22 @@ RSpec.describe OrderCreationUseCase do
     expect(inserted_order.currency).to eq('EUR')
     expect(inserted_order.items.count).to eq(2)
 
-    salad = OrderItem.new(
-      product: Product.new(name: 'salad', price: 3.56),
-      quantity: 2,
-      taxed_amount: 7.84,
-      tax: 0.72
-    )
-    assert_equal(inserted_order.items[0], salad)
+    salad =
+      OrderItem.new(
+        product: Product.new(name: 'salad', price: 3.56),
+        quantity: 2,
+        taxed_amount: 7.84,
+        tax: 0.72
+      )
 
-    tomato = OrderItem.new(
-      product: Product.new(name: 'tomato', price: 4.65),
-      quantity: 3,
-      taxed_amount: 15.36,
-      tax: 1.41
-    )
+    tomato =
+      OrderItem.new(
+        product: Product.new(name: 'tomato', price: 4.65),
+        quantity: 3,
+        taxed_amount: 15.36,
+        tax: 1.41
+      )
+    assert_equal(inserted_order.items[0], salad)
     assert_equal(inserted_order.items[1], tomato)
   end
 
