@@ -8,4 +8,8 @@ class Product
     @price = price
     @category = category
   end
+
+  def unitary_tax
+    ((price / 100.0) * category.tax_percentage).ceil(2)
+  end
 end
