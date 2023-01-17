@@ -22,13 +22,18 @@ class OrderCreationUseCase
 
       raise UnknownProductError if product.nil?
 
-      taxed_amount =  item_request.taxed_amount(product)
-      tax_amount = item_request.tax_amount(product)
-
-      order_item = OrderItem.new(product: product, quantity: item_request.quantity, tax: tax_amount, taxed_amount: taxed_amount)
+      order_item = to_order_item(product, item_request)
       order << order_item
     end
 
     @order_repository.save(order)
+  end
+
+  private
+
+  def to_order_item(product, item_request)
+    taxed_amount = item_request.taxed_amount(product)
+    tax_amount = item_request.tax_amount(product)
+    OrderItem.new(product: product, quantity: item_request.quantity, tax: tax_amount, taxed_amount: taxed_amount)
   end
 end
