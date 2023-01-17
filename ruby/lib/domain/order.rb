@@ -20,6 +20,12 @@ class Order
     @items = items
   end
 
+  def <<(order_item)
+    self.items << order_item
+    self.total += order_item.taxed_amount
+    self.tax += order_item.tax
+  end
+
   def approve!
     self.status = OrderStatus::APPROVED
   end
