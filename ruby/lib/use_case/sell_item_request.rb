@@ -7,4 +7,8 @@ class SellItemRequest
     @product_name = product_name
     @quantity = quantity
   end
+
+  def taxed_amount(product)
+    (product.unitary_taxed_amount * quantity).ceil(2)
+  end
 end
