@@ -23,7 +23,7 @@ class OrderCreationUseCase
       raise UnknownProductError if product.nil?
 
       taxed_amount =  item_request.taxed_amount(product)
-      tax_amount = (product.unitary_tax * item_request.quantity).ceil(2)
+      tax_amount = item_request.tax_amount(product)
 
       order_item = OrderItem.new
       order_item.product = product
