@@ -35,9 +35,6 @@ RSpec.describe OrderCreationUseCase do
 
     inserted_order = order_repository.saved_order
 
-    expected_order = Order.created(total: 23.20, tax: 2.13, currency: 'EUR')
-    assert_orders_equal(inserted_order, expected_order)
-
     salad =
       OrderItem.new(
         product: Product.new(name: 'salad', price: 3.56),
@@ -53,6 +50,8 @@ RSpec.describe OrderCreationUseCase do
         taxed_amount: 15.36,
         tax: 1.41
       )
+    expected_order = Order.created(total: 23.20, tax: 2.13, currency: 'EUR')
+    assert_orders_equal(inserted_order, expected_order)
     assert_equal(inserted_order.items[0], salad)
     assert_equal(inserted_order.items[1], tomato)
   end
