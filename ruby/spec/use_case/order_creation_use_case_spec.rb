@@ -28,7 +28,6 @@ RSpec.describe OrderCreationUseCase do
   it 'sells multiple items' do
     salad_request = SellItemRequest.new(product_name: 'salad', quantity: 2)
     tomato_request = SellItemRequest.new(product_name: 'tomato', quantity: 3)
-
     request = SellItemsRequest.new(requests: [salad_request, tomato_request])
 
     use_case.run(request)
