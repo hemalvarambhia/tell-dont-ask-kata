@@ -35,13 +35,7 @@ RSpec.describe OrderCreationUseCase do
 
     inserted_order = order_repository.saved_order
 
-    expected_order =
-      Order.new(
-        status: OrderStatus::CREATED,
-        total: 23.20,
-        tax: 2.13,
-        currency: 'EUR'
-      )
+    expected_order = Order.created(total: 23.20, tax: 2.13, currency: 'EUR')
     assert_orders_equal(inserted_order, expected_order)
 
     salad =

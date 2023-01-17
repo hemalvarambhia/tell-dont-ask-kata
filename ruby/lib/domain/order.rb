@@ -3,6 +3,10 @@
 class Order
   attr_accessor :total, :currency, :items, :tax, :status, :id
 
+  def self.created(total:, tax:, currency:)
+    new(status: OrderStatus::CREATED, total: total, tax: tax, currency: currency)
+  end
+
   def initialize(id: nil, status: '', total: 0.0, tax: 0.0, currency: 'EUR', items: [])
     @id = id
     @status = status
