@@ -27,8 +27,8 @@ class OrderCreationUseCase
 
       order_item = OrderItem.new(product: product, quantity: item_request.quantity, tax: tax_amount, taxed_amount: taxed_amount)
       order.items << order_item
-      order.total += taxed_amount
-      order.tax += tax_amount
+      order.total += order_item.taxed_amount
+      order.tax += order_item.tax
     end
 
     @order_repository.save(order)
