@@ -25,12 +25,7 @@ class OrderCreationUseCase
       taxed_amount =  item_request.taxed_amount(product)
       tax_amount = item_request.tax_amount(product)
 
-      order_item = OrderItem.new
-      order_item.product = product
-      order_item.quantity = item_request.quantity
-      order_item.tax = tax_amount
-      order_item.taxed_amount = taxed_amount
-
+      order_item = OrderItem.new(product: product, quantity: item_request.quantity, tax: tax_amount, taxed_amount: taxed_amount)
       order.items << order_item
       order.total += taxed_amount
       order.tax += tax_amount
