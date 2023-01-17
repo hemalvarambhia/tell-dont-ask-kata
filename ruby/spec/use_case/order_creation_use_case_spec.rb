@@ -62,7 +62,7 @@ RSpec.describe OrderCreationUseCase do
 
   private
 
-  def assert_equal(inserted_order_item, expected_order_item)
+  def assert_items_equal(inserted_order_item, expected_order_item)
     expect(inserted_order_item.product.name).to eq(expected_order_item.product.name)
     expect(inserted_order_item.product.price).to eq(expected_order_item.product.price)
     expect(inserted_order_item.quantity).to eq(expected_order_item.quantity)
@@ -77,7 +77,7 @@ RSpec.describe OrderCreationUseCase do
     expect(inserted_order.currency).to eq(expected_order.currency)
     expect(inserted_order.items.count).to eq(2)
     inserted_order.items.zip(expected_order.items).each do |item, expected_item|
-      assert_equal(item, expected_item)
+      assert_items_equal(item, expected_item)
     end
   end
 
