@@ -50,10 +50,10 @@ RSpec.describe OrderCreationUseCase do
         taxed_amount: 15.36,
         tax: 1.41
       )
-    expected_order = Order.created(total: 23.20, tax: 2.13, currency: 'EUR')
+    expected_order = Order.created(total: 23.20, tax: 2.13, currency: 'EUR', items: [salad, tomato])
     assert_orders_equal(inserted_order, expected_order)
-    assert_equal(inserted_order.items[0], salad)
-    assert_equal(inserted_order.items[1], tomato)
+    assert_equal(inserted_order.items[0], expected_order.items[0])
+    assert_equal(inserted_order.items[1], expected_order.items[1])
   end
 
   it 'cannot sell an unknown product' do
