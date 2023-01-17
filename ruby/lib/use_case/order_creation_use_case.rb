@@ -15,12 +15,7 @@ class OrderCreationUseCase
 
   # @param request [SellItemsRequest]
   def run(request)
-    order = Order.new
-    order.status = OrderStatus::CREATED
-    order.items = []
-    order.currency = 'EUR'
-    order.total = 0.0
-    order.tax = 0.0
+    order = Order.created(total: 0.0, tax: 0.0, currency: 'EUR', items: [])
 
     request.requests.each do |item_request|
       product = @product_catalog.get_by_name(item_request.product_name)
