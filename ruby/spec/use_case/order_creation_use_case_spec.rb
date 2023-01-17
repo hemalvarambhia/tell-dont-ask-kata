@@ -77,8 +77,9 @@ RSpec.describe OrderCreationUseCase do
     expect(inserted_order.tax).to eq(expected_order.tax)
     expect(inserted_order.currency).to eq(expected_order.currency)
     expect(inserted_order.items.count).to eq(2)
-    assert_equal(inserted_order.items[0], expected_order.items[0])
-    assert_equal(inserted_order.items[1], expected_order.items[1])
+    inserted_order.items.zip(expected_order.items).each do |item, expected_item|
+      assert_equal(item, expected_item)
+    end
   end
 
 end
