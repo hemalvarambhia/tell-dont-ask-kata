@@ -21,25 +21,25 @@ class Order
   end
 
   def <<(order_item)
-    self.items << order_item
-    self.total += order_item.taxed_amount
-    self.tax += order_item.tax
+    @items << order_item
+    @total += order_item.taxed_amount
+    @tax += order_item.tax
   end
 
   def create!
-    self.status = OrderStatus::CREATED
+    @status = OrderStatus::CREATED
   end
 
   def approve!
-    self.status = OrderStatus::APPROVED
+    @status = OrderStatus::APPROVED
   end
 
   def reject!
-    self.status = OrderStatus::REJECTED
+    @status = OrderStatus::REJECTED
   end
 
   def ship!
-    self.status = OrderStatus::SHIPPED
+    @status = OrderStatus::SHIPPED
   end
 
   def approved?
