@@ -16,11 +16,7 @@ RSpec.describe OrderShipmentUseCase do
   end
   let(:shipment_service) { TestShipmentService.new }
   let(:use_case) { OrderShipmentUseCase.new(order_repository, shipment_service) }
-  let(:request) do
-    r = OrderShipmentRequest.new
-    r.order_id = initial_order.id
-    r
-  end
+  let(:request) { OrderShipmentRequest.new(initial_order.id) }
 
   let(:initial_order) { Order.new }
 
