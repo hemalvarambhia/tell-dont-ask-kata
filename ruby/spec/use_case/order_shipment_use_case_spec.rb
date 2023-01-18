@@ -25,7 +25,7 @@ RSpec.describe OrderShipmentUseCase do
   let(:initial_order) { Order.new }
 
   it 'ships approved orders' do
-    initial_order.status = OrderStatus::APPROVED
+    initial_order.approve!
 
     use_case.run(request)
 
