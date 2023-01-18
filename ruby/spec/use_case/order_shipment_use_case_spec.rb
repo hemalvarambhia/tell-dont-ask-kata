@@ -51,7 +51,7 @@ RSpec.describe OrderShipmentUseCase do
     expect(shipment_service.shipped_order).to be_nil
   end
 
-  it 'cannot ship shipped orders again' do
+  it 'cannot ship orders that have been shipped already' do
     initial_order.ship!
 
     expect { use_case.run(request) }.to raise_error(described_class::OrderCannotBeShippedTwiceError)
