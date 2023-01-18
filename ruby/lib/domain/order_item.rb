@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OrderItem
-  attr_accessor :product, :quantity, :taxed_amount, :tax
+  attr_reader :product, :quantity, :taxed_amount, :tax
 
   def initialize(product:, quantity:, taxed_amount:, tax:)
     @product = product
