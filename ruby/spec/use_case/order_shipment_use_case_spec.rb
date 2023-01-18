@@ -43,7 +43,7 @@ RSpec.describe OrderShipmentUseCase do
   end
 
   it 'cannot ship rejected orders' do
-    initial_order.status = OrderStatus::REJECTED
+    initial_order.reject!
 
     expect { use_case.run(request) }.to raise_error(described_class::OrderCannotBeShippedError)
 
@@ -52,7 +52,7 @@ RSpec.describe OrderShipmentUseCase do
   end
 
   it 'cannot ship shipped orders again' do
-    initial_order.status = OrderStatus::SHIPPED
+    initial_order.ship!
 
     expect { use_case.run(request) }.to raise_error(described_class::OrderCannotBeShippedTwiceError)
 
