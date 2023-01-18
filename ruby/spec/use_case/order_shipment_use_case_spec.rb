@@ -22,11 +22,7 @@ RSpec.describe OrderShipmentUseCase do
     r
   end
 
-  let(:initial_order) do
-    order = Order.new
-    order.id = 1
-    order
-  end
+  let(:initial_order) { Order.new }
 
   it 'ships approved orders' do
     initial_order.status = OrderStatus::APPROVED
