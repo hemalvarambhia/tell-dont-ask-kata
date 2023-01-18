@@ -26,6 +26,10 @@ class Order
     self.tax += order_item.tax
   end
 
+  def create!
+    self.status = OrderStatus::CREATED
+  end
+
   def approve!
     self.status = OrderStatus::APPROVED
   end

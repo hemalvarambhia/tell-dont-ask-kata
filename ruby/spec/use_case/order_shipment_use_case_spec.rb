@@ -34,7 +34,7 @@ RSpec.describe OrderShipmentUseCase do
   end
 
   it 'cannot ship created orders' do
-    initial_order.status = OrderStatus::CREATED
+    initial_order.create!
 
     expect { use_case.run(request) }.to raise_error(described_class::OrderCannotBeShippedError)
 
