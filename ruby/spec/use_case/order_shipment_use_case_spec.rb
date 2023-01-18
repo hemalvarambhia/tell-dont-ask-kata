@@ -29,7 +29,7 @@ RSpec.describe OrderShipmentUseCase do
 
     use_case.run(request)
 
-    expect(order_repository.saved_order.status).to eq(OrderStatus::SHIPPED)
+    expect(order_repository.saved_order).to be_shipped
     expect(shipment_service.shipped_order).to eq(initial_order)
   end
 
