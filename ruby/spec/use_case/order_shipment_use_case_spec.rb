@@ -9,16 +9,14 @@ require 'domain/order_status'
 require_relative '../doubles/test_shipment_service'
 
 RSpec.describe OrderShipmentUseCase do
-  let(:order_repository) do
-    r = TestOrderRepository.new
-    r.add_order(initial_order)
-    r
-  end
+  let(:order_repository) { TestOrderRepository.new }
   let(:shipment_service) { TestShipmentService.new }
   let(:use_case) { OrderShipmentUseCase.new(order_repository, shipment_service) }
   let(:request) { OrderShipmentRequest.new(initial_order.id) }
 
   let(:initial_order) { Order.new }
+
+  before { order_repository.add_order(initial_order) }
 
   it 'ships approved orders' do
     initial_order.approve!
