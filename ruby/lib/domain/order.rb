@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Order
-  attr_accessor :total, :currency, :items, :tax, :status, :id
+  attr_reader :total, :currency, :items, :tax, :status, :id
 
   def self.blank(id:, currency: 'EUR')
     created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
