@@ -2,7 +2,6 @@
 
 require_relative '../domain/order'
 require_relative '../domain/order_item'
-require_relative '../domain/order_status'
 require_relative '../domain/product'
 
 class OrderCreationUseCase

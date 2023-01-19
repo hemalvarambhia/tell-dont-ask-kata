@@ -4,7 +4,6 @@ require 'use_case/order_shipment_use_case'
 require 'use_case/order_shipment_request'
 
 require 'domain/order'
-require 'domain/order_status'
 
 require_relative '../doubles/test_shipment_service'
 

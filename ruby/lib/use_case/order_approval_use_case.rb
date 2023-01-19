@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../domain/order_status'
-
 class OrderApprovalUseCase
   class ShippedOrdersCannotBeChangedError < StandardError; end
   class RejectedOrderCannotBeApprovedError < StandardError; end
