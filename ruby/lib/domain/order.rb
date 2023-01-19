@@ -4,11 +4,11 @@ class Order
   attr_accessor :total, :currency, :items, :tax, :status, :id
 
   def self.blank(id: nil, currency: 'EUR')
-    created(total: 0.0, tax: 0.0, currency: currency, items: [])
+    created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
   end
 
-  def self.created(total:, tax:, currency:, items:)
-    new(status: CREATED, total: total, tax: tax, currency: currency, items: items)
+  def self.created(id: nil, total:, tax:, currency:, items:)
+    new(id: id, status: CREATED, total: total, tax: tax, currency: currency, items: items)
   end
 
   def initialize(id: nil, status: '', total: 0.0, tax: 0.0, currency: 'EUR', items: [])
