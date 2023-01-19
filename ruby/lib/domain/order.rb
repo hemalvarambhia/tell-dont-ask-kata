@@ -3,6 +3,17 @@
 class Order
   attr_reader :total, :currency, :items, :tax, :status, :id
 
+  def self.with(id:, status:, currency:, items:)
+    new(
+      id: id,
+      status: status,
+      total: items.sum {|item| item.taxed_amount },
+      tax: items.sum { |item| item.tax },
+      currency: currency,
+      items: items
+    )
+  end
+
   def self.blank(id:, currency: 'EUR')
     created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
   end

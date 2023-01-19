@@ -13,7 +13,7 @@ RSpec.describe OrderShipmentUseCase do
   let(:use_case) { OrderShipmentUseCase.new(order_repository, shipment_service) }
   let(:request) { OrderShipmentRequest.new(initial_order.id) }
 
-  let(:initial_order) { Order.new(id: nil, status: '', total: 0.0, tax: 0.0, currency: 'EUR', items: []) }
+  let(:initial_order) { Order.with(id: nil, status: '', currency: 'EUR', items: []) }
 
   before { order_repository.add_order(initial_order) }
 
