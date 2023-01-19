@@ -8,7 +8,7 @@ class Order
   end
 
   def self.created(total:, tax:, currency:, items:)
-    new(status: OrderStatus::CREATED, total: total, tax: tax, currency: currency, items: items)
+    new(status: CREATED, total: total, tax: tax, currency: currency, items: items)
   end
 
   def initialize(id: nil, status: '', total: 0.0, tax: 0.0, currency: 'EUR', items: [])
@@ -27,34 +27,41 @@ class Order
   end
 
   def create!
-    @status = OrderStatus::CREATED
+    @status = CREATED
   end
 
   def approve!
-    @status = OrderStatus::APPROVED
+    @status = APPROVED
   end
 
   def reject!
-    @status = OrderStatus::REJECTED
+    @status = REJECTED
   end
 
   def ship!
-    @status = OrderStatus::SHIPPED
+    @status = SHIPPED
   end
 
   def created?
-    status == OrderStatus::CREATED
+    status == CREATED
   end
 
   def approved?
-    status == OrderStatus::APPROVED
+    status == APPROVED
   end
 
   def shipped?
-    status == OrderStatus::SHIPPED
+    status == SHIPPED
   end
 
   def rejected?
-    status == OrderStatus::REJECTED
+    status == REJECTED
   end
+
+  APPROVED = :approved
+  SHIPPED = :shipped
+  REJECTED = :rejected
+  CREATED = :created
+
+  private_constant :APPROVED, :SHIPPED, :REJECTED, :CREATED
 end
