@@ -14,7 +14,7 @@ class OrderCreationUseCase
 
   # @param request [SellItemsRequest]
   def run(request)
-    order = Order.blank('EUR')
+    order = Order.blank(id: nil, currency: 'EUR')
 
     request.requests.each do |item_request|
       product = @product_catalog.get_by_name(item_request.product_name)

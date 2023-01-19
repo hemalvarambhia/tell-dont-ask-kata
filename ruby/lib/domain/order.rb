@@ -3,7 +3,7 @@
 class Order
   attr_accessor :total, :currency, :items, :tax, :status, :id
 
-  def self.blank(currency)
+  def self.blank(id: nil, currency: 'EUR')
     created(total: 0.0, tax: 0.0, currency: currency, items: [])
   end
 

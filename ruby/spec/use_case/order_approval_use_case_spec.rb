@@ -9,7 +9,7 @@ RSpec.describe OrderApprovalUseCase do
   let(:order_repository) { TestOrderRepository.new }
   let(:use_case) { described_class.new(order_repository) }
 
-  let(:initial_order) { Order.new(id: rand(1..1000)) }
+  let(:initial_order) { Order.blank(id: rand(1..1000), currency: 'Irrelevant') }
 
   before { order_repository.add_order(initial_order) }
 
