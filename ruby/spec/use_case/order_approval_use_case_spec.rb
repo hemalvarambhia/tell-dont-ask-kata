@@ -44,12 +44,12 @@ RSpec.describe OrderApprovalUseCase do
   end
 
   it 'rejects a newly unapproved order' do
-    initial_order.status = OrderStatus::CREATED
+    initial_order.create!
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
 
     use_case.run(request)
 
     saved_order = order_repository.saved_order
-    expect(saved_order.status).to eq(OrderStatus::REJECTED)
+    expect(saved_order).to be_rejected
   end
 end
