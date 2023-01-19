@@ -42,6 +42,10 @@ class Order
     @status = OrderStatus::SHIPPED
   end
 
+  def created?
+    status == OrderStatus::CREATED
+  end
+
   def approved?
     status == OrderStatus::APPROVED
   end
