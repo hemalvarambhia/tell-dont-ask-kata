@@ -22,6 +22,15 @@ RSpec.describe OrderApprovalUseCase do
     expect(saved_order).to be_approved
   end
 
+  it 'rejects a new order' do
+    request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
+
+    use_case.run(request)
+
+    saved_order = order_repository.saved_order
+    expect(saved_order).to be_rejected
+  end
+
   it 'cannot approve a rejected order' do
     initial_order.reject!
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: true)
@@ -41,14 +50,5 @@ RSpec.describe OrderApprovalUseCase do
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
 
     expect { use_case.run(request) }.to raise_error(described_class::ApprovedOrderCannotBeRejectedError)
-  end
-
-  it 'rejects a new order' do
-    request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
-
-    use_case.run(request)
-
-    saved_order = order_repository.saved_order
-    expect(saved_order).to be_rejected
   end
 end
