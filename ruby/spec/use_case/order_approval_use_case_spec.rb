@@ -13,7 +13,7 @@ RSpec.describe OrderApprovalUseCase do
 
   before { order_repository.add_order(initial_order) }
 
-  it 'approves an existing order' do
+  it 'approves an new order' do
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: true)
 
     use_case.run(request)
@@ -43,8 +43,7 @@ RSpec.describe OrderApprovalUseCase do
     expect { use_case.run(request) }.to raise_error(described_class::ApprovedOrderCannotBeRejectedError)
   end
 
-  it 'rejects a newly unapproved order' do
-    initial_order.create!
+  it 'rejects a new order' do
     request = OrderApprovalRequest.new(order_id: initial_order.id, approved: false)
 
     use_case.run(request)
