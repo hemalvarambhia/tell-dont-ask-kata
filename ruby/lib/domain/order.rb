@@ -7,7 +7,7 @@ class Order
     created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
   end
 
-  def self.created(id: nil, total:, tax:, currency:, items:)
+  def self.created(id:, total:, tax:, currency:, items:)
     new(id: id, status: CREATED, total: total, tax: tax, currency: currency, items: items)
   end
 
