@@ -3,6 +3,14 @@
 class Order
   attr_reader :total, :currency, :items, :tax, :status, :id
 
+  def self.blank(id:, currency: 'EUR')
+    created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
+  end
+
+  def self.created(id:, total:, tax:, currency:, items:)
+    new(id: id, status: CREATED, total: total, tax: tax, currency: currency, items: items)
+  end
+
   def self.with(id:, status:, currency:, items:)
     new(
       id: id,
@@ -12,14 +20,6 @@ class Order
       currency: currency,
       items: items
     )
-  end
-
-  def self.blank(id:, currency: 'EUR')
-    created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
-  end
-
-  def self.created(id:, total:, tax:, currency:, items:)
-    new(id: id, status: CREATED, total: total, tax: tax, currency: currency, items: items)
   end
 
   def initialize(id:, status: '', total:, tax:, currency:, items:)
