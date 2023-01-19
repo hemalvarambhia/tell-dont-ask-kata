@@ -11,7 +11,7 @@ class Order
     new(id: id, status: CREATED, total: total, tax: tax, currency: currency, items: items)
   end
 
-  def initialize(id: nil, status: '', total: 0.0, tax: 0.0, currency: 'EUR', items: [])
+  def initialize(id:, status: '', total:, tax:, currency:, items:)
     @id = id
     @status = status
     @total = total
