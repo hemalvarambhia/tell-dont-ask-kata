@@ -2,6 +2,7 @@
 
 class Order
   attr_reader :total, :currency, :items, :tax, :status, :id
+  private_class_method :new
 
   def self.blank(id:, currency: 'EUR')
     with(id: id, status: CREATED, currency: currency, items: [])
