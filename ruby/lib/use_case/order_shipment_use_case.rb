@@ -19,7 +19,7 @@ class OrderShipmentUseCase
 
     @shipment_service.ship(order)
 
-    order.status = OrderStatus::SHIPPED
+    order.ship!
     @order_repository.save(order)
   end
 end
