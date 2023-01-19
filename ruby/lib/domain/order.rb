@@ -4,7 +4,7 @@ class Order
   attr_reader :total, :currency, :items, :tax, :status, :id
 
   def self.blank(id:, currency: 'EUR')
-    created(id: id, total: 0.0, tax: 0.0, currency: currency, items: [])
+    with(id: id, status: CREATED, currency: currency, items: [])
   end
 
   def self.created(id:, total:, tax:, currency:, items:)
