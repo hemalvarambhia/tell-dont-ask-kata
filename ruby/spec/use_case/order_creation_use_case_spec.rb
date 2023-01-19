@@ -49,7 +49,7 @@ RSpec.describe OrderCreationUseCase do
         taxed_amount: 15.36,
         tax: 1.41
       )
-    expected_order = Order.created(total: 23.20, tax: 2.13, currency: 'EUR', items: [salad, tomato])
+    expected_order = Order.created(id: nil, total: 23.20, tax: 2.13, currency: 'EUR', items: [salad, tomato])
     assert_orders_equal(inserted_order, expected_order)
   end
 
