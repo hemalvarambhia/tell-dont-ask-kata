@@ -36,7 +36,7 @@ RSpec.describe OrderCreationUseCase do
 
     salad =
       OrderItem.new(
-        product: Product.new(name: 'salad', price: 3.56),
+        product: Product.new(name: 'salad', price: 3.56, category: food),
         quantity: 2,
         taxed_amount: 7.84,
         tax: 0.72
@@ -44,7 +44,7 @@ RSpec.describe OrderCreationUseCase do
 
     tomato =
       OrderItem.new(
-        product: Product.new(name: 'tomato', price: 4.65),
+        product: Product.new(name: 'tomato', price: 4.65, category: food),
         quantity: 3,
         taxed_amount: 15.36,
         tax: 1.41
