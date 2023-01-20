@@ -54,6 +54,10 @@ class Order
     @status = SHIPPED
   end
 
+  def unshippable?
+    created? || rejected?
+  end
+
   def created?
     status == CREATED
   end
