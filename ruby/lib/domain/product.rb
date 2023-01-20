@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Product
-  attr_reader :name, :price, :category
+  attr_reader :name, :price
 
   def initialize(name: '', price: 0.0, category: nil)
     @name = name
@@ -16,4 +16,8 @@ class Product
   def unitary_taxed_amount
     (price + unitary_tax).ceil(2)
   end
+
+  private
+
+  attr_reader :category
 end
