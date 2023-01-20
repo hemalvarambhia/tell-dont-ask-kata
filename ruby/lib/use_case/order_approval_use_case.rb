@@ -15,11 +15,11 @@ class OrderApprovalUseCase
 
     raise ShippedOrdersCannotBeChangedError if order.shipped?
 
-    raise RejectedOrderCannotBeApprovedError if request.approved && order.rejected?
+    raise RejectedOrderCannotBeApprovedError if request.approved? && order.rejected?
 
-    raise ApprovedOrderCannotBeRejectedError if !request.approved && order.approved?
+    raise ApprovedOrderCannotBeRejectedError if !request.approved? && order.approved?
 
-    if request.approved
+    if request.approved?
       order.approve!
     else
       order.reject!
