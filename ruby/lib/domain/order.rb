@@ -5,7 +5,7 @@ class Order
   private_class_method :new
 
   def self.blank(id:, currency:)
-    with(id: id, status: CREATED, currency: currency, items: [])
+    created(id: id, currency: currency, items: [])
   end
 
   def self.created(id:, currency:, items:)
