@@ -79,5 +79,7 @@ class Order
   REJECTED = :rejected
   CREATED = :created
 
-  private_constant :APPROVED, :SHIPPED, :REJECTED, :CREATED
+  def inspect
+    "Order: total + tax #{total}, tax: #{tax}"
+  end
 end
