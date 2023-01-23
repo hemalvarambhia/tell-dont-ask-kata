@@ -80,6 +80,6 @@ class Order
   CREATED = :created
 
   def inspect
-    "Order: total + tax #{total}, tax: #{tax}"
+    "Order: total + tax: #{total}, tax: #{tax}"
   end
 end
