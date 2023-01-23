@@ -16,12 +16,12 @@ class OrderCreationUseCase
   def run(request)
     order = Order.blank(id: nil, currency: 'EUR')
 
-    request.each_item do |item_request|
-      product = @product_catalog.get_by_name(item_request.product_name)
+    request.each_item do |item|
+      product = @product_catalog.get_by_name(item.product_name)
 
       raise UnknownProductError if product.nil?
 
-      order_item = to_order_item(product, item_request)
+      order_item = to_order_item(product, item)
       order << order_item
     end
 
