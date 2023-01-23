@@ -15,7 +15,7 @@ describe 'Preparing an order' do
         tax: 1.41
       )
     ]
-    order = Order.with(id: rand(1..10), currency: 'EUR', status: Order::CREATED, items: items)
+    order = Order.created(id: rand(1..10), currency: 'EUR', items: items)
 
     expect(order.tax).to eq(0.72 + 1.41)
     expect(order.total).to eq(7.84 + 15.36)
