@@ -8,8 +8,8 @@ class Order
     with(id: id, status: CREATED, currency: currency, items: [])
   end
 
-  def self.created(id:, total:, tax:, currency:, items:)
-    new(id: id, status: CREATED, total: total, tax: tax, currency: currency, items: items)
+  def self.created(id:, total: nil, tax: nil, currency:, items:)
+    with(id: id, status: CREATED, currency: currency, items: items)
   end
 
   def self.with(id:, status:, currency:, items:)
