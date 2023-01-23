@@ -21,5 +21,10 @@ describe 'Preparing an order' do
     expect(order.total).to eq(7.84 + 15.36)
   end
 
-  it 'computes the tax and taxed amounts of a blank order'
+  it 'computes the tax and taxed amounts of a blank order' do
+    order = Order.blank(id: rand(1..10), currency: 'EUR')
+
+    expect(order.tax).to eq(0.0)
+    expect(order.total).to eq(0.0)
+  end
 end
